@@ -1,8 +1,5 @@
 <?php
 include_once('functions.php');
-include_once('database.php');
-$id = $_GET['id'] ?? -1;
-$posts = getPost($id);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -10,7 +7,7 @@ $posts = getPost($id);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=$title?> - <?=$post['title']?></title>
+    <title><?=$title?></title>
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
 </head>
 <body>
@@ -18,12 +15,7 @@ $posts = getPost($id);
     printNavbar();
     ?>
     <main class="container mt-5">
-        <h2><?=$post['title']?></h2>
-        <h2 class="text-muted"><?=$post['categoryName']?></h2>
-        <h2 class="text-muted"><?=$post['firstName']?> <?=$post['lastName']?>, <?=$post['createdAt']?></h2>
-        <p>
-            <?=post['content']?>
-        </p>
+        <h2>Error 404 nie znaleziono</h2>
     </main>
     <script src="js/bootstrap/bootstrap.min.js"></script>
 </body>
