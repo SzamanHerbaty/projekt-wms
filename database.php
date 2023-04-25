@@ -1,5 +1,6 @@
 <?php
 include_once('config.php');
+include_once('functions.php');
 
 function getConnection() {
     global $dbHost, $dbName, $dbUser, $dbPassword;
@@ -18,7 +19,7 @@ function getAllPosts() {
     $connection->close();
     return $rows;
 }
-function getAllPosts() {
+function getPost($id) {
     $connection = getConnection();
     $sql = 'SELECT posts.id As id, posts.title As title, posts.content As content, post.createdAt As createdAt, categories.name As categoryName, admins.firstName As firstName, admins.lastName As lastName From posts Inner Join categories On posts.categoryId=categories.id Inner Join admins On posts.authorId=admins.id Where id = $id';
     $result = $connection->query($sql);
@@ -30,4 +31,24 @@ function getAllPosts() {
         exit();
     }
     return $rows[0];
+}
+function addPost(){
+    $values=['title','categoryId','content'];
+    if(!isPostValid($values)) return;
+    $categoryId = $_POST['categoryId'];
+    $authorId = 1;
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $sql = "insert into posts(categoryId,authorId,title,content) values('$categoryId', '$authorId', '$title', '$content' )";
+    $connection->query($sql);
+    $connection->close();
+    header('Location: admin-posts.php')
+}
+function getAllCategories(){
+    $connection = getConnection();
+    $sql = 'select * form categories';
+    $result $connection->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $connection->close();
+    return $rows;
 }
