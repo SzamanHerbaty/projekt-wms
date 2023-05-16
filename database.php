@@ -66,3 +66,14 @@ function addMessage(){
     $connection->close();
     header('Location: contact.php?succeeded=1');
 }
+function login(){
+    $values = ['email', 'password'];
+    if(!isPostValid($values)) return;
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $connection = getConnection();
+    $sql = "select * from admin where email='$email'";
+    $result = $connection->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    
+}
