@@ -21,7 +21,7 @@ function getAllPosts() {
 }
 function getPost($id) {
     $connection = getConnection();
-    $sql = 'SELECT posts.id As id, posts.title As title, posts.content As content, post.createdAt As createdAt, categories.name As categoryName, admins.firstName As firstName, admins.lastName As lastName From posts Inner Join categories On posts.categoryId=categories.id Inner Join admins On posts.authorId=admins.id Where id = $id';
+    $sql = "SELECT posts.id As id, posts.title As title, posts.content As content, posts.createdAt As createdAt, categories.name As categoryName, admins.firstName As firstName, admins.lastName As lastName From posts Inner Join categories On posts.categoryId=categories.id Inner Join admins On posts.authorId=admins.id Where posts.id = $id";
     $result = $connection->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $connection->close();
@@ -39,16 +39,30 @@ function addPost(){
     $authorId = 1;
     $title = $_POST['title'];
     $content = $_POST['content'];
+    $connection = getConnection();
     $sql = "insert into posts(categoryId,authorId,title,content) values('$categoryId', '$authorId', '$title', '$content' )";
     $connection->query($sql);
     $connection->close();
-    header('Location: admin-posts.php')
+    header('Location: admin-posts.php');
 }
 function getAllCategories(){
     $connection = getConnection();
-    $sql = 'select * form categories';
-    $result $connection->query($sql);
+    $sql = 'select * from categories';
+    $result = $connection->query($sql);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
     $connection->close();
     return $rows;
+}
+function addMessage(){
+    $values = ['email', 'firstName', 'lastName','content'];
+    if(!isPostValid($values)) return;
+    $email = $_POST['email'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $content = $_POST['content'];
+    $connection = getConnection();
+    $sql = "insert into messages(email,firstName,lastName,content) values('$email', '$firstName', '$lastName','$content')";
+    $connection->query($sql);
+    $connection->close();
+    header('Location: contact.php?succeeded=1');
 }

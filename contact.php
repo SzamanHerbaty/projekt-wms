@@ -1,8 +1,7 @@
 <?php
 include_once('functions.php');
 include_once('database.php');
-$categories = getAllCategories();
-addPost();
+addMessage();
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -18,13 +17,23 @@ addPost();
     printNavbar();
     ?>
     <main class="container mt-5">
-        <h2>Nowy post</h2>
+        <h2>Kontakt</h2>
         <form method="post">
-            <?=printFormField('title','Tytuł','text')?>
-            <?=printSelect('categoryId','Kategoria', $categories)?>
+            <?=printFormField('email','E-mail','email')?>
+            <?=printFormField('firstName','Imię','text')?>
+            <?=printFormField('lastName','Nazwisko','text')?>
             <?=printTextarea('content','Treść')?>
-            <input type="submit" class="btn btn-outline-primary" value="Dodaj!">
+            <input type="submit" class="btn btn-outline-primary" value="Wyślij wiadomość!">
         </form>
+        <?php
+        if(isset($_GET['succeeded']) && $_GET['succeeded']){
+            ?>
+            <div class="alert alert-info" role="alert">
+                Wiadomość wysłana pomyślnie!
+            </div>
+            <?php
+        }
+        ?>
     </main>
     <script src="js/bootstrap/bootstrap.min.js"></script>
 </body>

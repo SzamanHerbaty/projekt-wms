@@ -29,7 +29,7 @@ include_once('database.php');
                     <div class="card-body">
                         <h5 class="card-title"><?=$a['title']?></h5>
                         <h5 class="card-subtitle mb-2 text-muted"><?=$a['categoryName']?></h5>
-                        <p class="card-link"><a href="posts.php?id=<?=$a['title']?>" target="_blanlk">Więcej<a></p>
+                        <p class="card-link"><a href="post.php?id=<?=$a['id']?>" target="_blank">Więcej<a></p>
                     </div>
                 </div>
             <?php

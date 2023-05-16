@@ -15,6 +15,7 @@ function printNavbar() {
             <a class="nav-link" aria-current="page" href="index.php">Strona Główna</a></li>
             <a class="nav-link" aria-current="page" href="posts.php">Posty</a></li>
             <a class="nav-link" aria-current="page" href="admin-posts.php">Zarządzanie - Posty</a></li>
+            <a class="nav-link" aria-current="page" href="contact.php">Kontakt</a></li>
 
         </ul>
         </div>

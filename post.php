@@ -2,7 +2,7 @@
 include_once('functions.php');
 include_once('database.php');
 $id = $_GET['id'] ?? -1;
-$posts = getPost($id);
+$post = getPost($id);
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -19,10 +19,10 @@ $posts = getPost($id);
     ?>
     <main class="container mt-5">
         <h2><?=$post['title']?></h2>
-        <h2 class="text-muted"><?=$post['categoryName']?></h2>
-        <h2 class="text-muted"><?=$post['firstName']?> <?=$post['lastName']?>, <?=$post['createdAt']?></h2>
+        <h5 class="text-muted"><?=$post['categoryName']?></h5>
+        <h5 class="text-muted"><?=$post['firstName']?> <?=$post['lastName']?>, <?=$post['createdAt']?></h5>
         <p>
-            <?=post['content']?>
+            <?=$post['content']?>
         </p>
     </main>
     <script src="js/bootstrap/bootstrap.min.js"></script>
